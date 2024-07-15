@@ -1,6 +1,6 @@
 package com.chumz.letsChatApi.service;
 
-import com.chumz.letsChatApi.entity.ChatMessage;
+import com.chumz.letsChatApi.entity.Chat;
 import com.chumz.letsChatApi.repository.ChatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,10 @@ public class ChatService {
     @Autowired
     private ChatRepository chatRepository;
 
-    public ChatMessage sendMessage(ChatMessage chatMessage) {
-        chatMessage.setId(UUID.randomUUID().toString());
-        chatMessage.setTimeStamp(new Date());
-        chatRepository.saveChatMessage(chatMessage);
-        return chatMessage;
+    public Chat sendMessage(Chat chat) {
+        chat.setId(UUID.randomUUID().toString());
+        chat.setTimeStamp(new Date());
+        chatRepository.saveChatMessage(chat);
+        return chat;
     }
 }
