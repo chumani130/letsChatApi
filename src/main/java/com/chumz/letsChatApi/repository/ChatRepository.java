@@ -1,6 +1,6 @@
 package com.chumz.letsChatApi.repository;
 
-import com.chumz.letsChatApi.entity.ChatMessage;
+import com.chumz.letsChatApi.entity.Chat;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
@@ -14,9 +14,9 @@ public class ChatRepository {
 
     public static final String COLLECTION_NAME = "chats";
 
-    public String saveChatMessage(ChatMessage chatMessage) {
+    public String saveChatMessage(Chat chat) {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COLLECTION_NAME).document(chatMessage.getId()).set(chatMessage);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COLLECTION_NAME).document(chat.getId()).set(chat);
         try {
             return collectionsApiFuture.get().getUpdateTime().toString();
         } catch (InterruptedException | ExecutionException e) {
